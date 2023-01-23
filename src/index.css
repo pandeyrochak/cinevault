@@ -8,4 +8,9 @@
 }
 body {
   font-family: "Poppins", sans-serif;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+}
+body::-webkit-scrollbar {
+  display: none;
 }
