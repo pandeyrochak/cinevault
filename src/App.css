@@ -1,0 +1,12 @@
+.upcomingSlider .swiper-pagination-bullet {
+  background-color: white;
+  width: 10px;
+  height: 10px;
+  box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+}
+.upcomingSlider
+  .swiper-horizontal
+  > .swiper-pagination-bullets.swiper-pagination-bullets-dynamic,
+.swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
+  margin-bottom: 8rem;
+}
