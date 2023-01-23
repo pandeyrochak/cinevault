@@ -32,7 +32,7 @@ const Header = (props: HeaderProps) => {
                 key={movie.id}
                 className="bg-cover bg-center bg-no-repeat relative"
                 style={{
-                  backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.37) 0%, rgba(1, 0, 2, 0.43) 79.17%, #010002 100%),url(${imageBaseUrl}${movie.backdrop_path})`,
+                  backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.37) 0%, rgba(1, 0, 2, 0.43) 79.17%, #010002 100%),url(${imageBaseUrl}/original/${movie.backdrop_path})`,
                 }}
               >
                 <Main movieInfo={movie} />

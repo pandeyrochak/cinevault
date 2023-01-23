@@ -1,6 +1,6 @@
 export const logo = "/assets/logo.png";
 export const backdrop = "/assets/pushpa_backdrop.png";
-export const imageBaseUrl = "https://image.tmdb.org/t/p/original";
+export const imageBaseUrl = "https://image.tmdb.org/t/p/";
 // ids for genres used in api
 export const genres = [
   {
