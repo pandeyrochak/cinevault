@@ -1,12 +1,12 @@
 import React from "react";
 import "./App.css";
-
+import { Header, Navbar } from "./components/exports";
+import { backdrop } from "./utils/constants";
 function App() {
   return (
-    <div className="App bg-green-800 w-screen h-screen">
-      <h1 className="text-4xl text-center text-green-200 ">
-        Hi there, project setup successfully
-      </h1>
+    <div className="App bg-gray-900 w-screen text-white">
+      <Navbar />
+      <Header backdrop={backdrop} />
     </div>
   );
 }
