@@ -4,11 +4,16 @@ import { Header, Navbar } from "./components/exports";
 import { getUpcoming } from "./utils/fetchFromAPI";
 
 function App() {
-  const [upcomingMovies, setupcomingMovies] = useState([]);
+  const [upcomingMovies, setupcomingMovies] = useState([{}]);
   useEffect(() => {
-    getUpcoming("IN").then((data) => {
-      setupcomingMovies(data);
-    });
+    if (localStorage.getItem("upcomingMovies")) {
+      setupcomingMovies(JSON.parse(localStorage.getItem("upcomingMovies")!));
+    } else {
+      getUpcoming("IN").then((data) => {
+        setupcomingMovies(data);
+        localStorage.setItem("upcomingMovies", JSON.stringify(data));
+      });
+    }
   }, []);
 
   return (
