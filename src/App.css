@@ -10,3 +10,7 @@
 .swiper-pagination-horizontal.swiper-pagination-bullets.swiper-pagination-bullets-dynamic {
   margin-bottom: 8rem;
 }
+
+.trendingSlider .swiper-slide {
+  width: fit-content;
+}
