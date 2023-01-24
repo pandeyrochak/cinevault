@@ -17,7 +17,7 @@ const Main = (props: MainProps) => {
   const { movieInfo } = props;
 
   // get genre names
-  const genreList = getGenreList(movieInfo);
+  const genreList = getGenreList(movieInfo.genre_ids);
 
   // find original language name
   const originalLanguage = getLanguageName(movieInfo.original_language);

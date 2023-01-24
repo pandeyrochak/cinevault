@@ -1,7 +1,7 @@
 import { genres, languages } from "./constants";
 
-export const getGenreList = (movieInfo: any) => {
-  return movieInfo.genre_ids
+export const getGenreList = (genreIds: any) => {
+  return genreIds
     .map((id: number) => {
       return genres.find((genre) => genre.id === id)?.name;
     })
