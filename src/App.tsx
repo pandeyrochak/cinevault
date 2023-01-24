@@ -1,6 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { Navbar, Home } from "./components/exports";
+import { Navbar, Home, Details } from "./components/exports";
 
 function App() {
   return (
@@ -9,6 +9,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/details/:media/:id" element={<Details />} />
         </Routes>
       </BrowserRouter>
     </div>

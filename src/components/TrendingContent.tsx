@@ -1,5 +1,5 @@
 import React from "react";
-import { MovieCard } from "./exports";
+import { MediaCard } from "./exports";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 // Import Swiper styles
@@ -33,8 +33,12 @@ const TrendingContent = (props: TrendingContentProps) => {
         className="trendingSlider"
       >
         {trendingList.map((item: any) => (
-          <SwiperSlide>
-            <MovieCard imageUrl={item.poster_path} />
+          <SwiperSlide key={item.id}>
+            <MediaCard
+              imageUrl={item.poster_path}
+              movieId={item.id}
+              mediaType={mediaType}
+            />
           </SwiperSlide>
         ))}
       </Swiper>

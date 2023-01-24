@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Header, Navbar, TrendingContent } from "../exports";
+import { Header, TrendingContent } from "../exports";
 import { getTrending, getUpcoming } from "../../utils/fetchFromAPI";
 
 const Home = () => {
