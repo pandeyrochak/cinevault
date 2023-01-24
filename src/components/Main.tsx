@@ -1,6 +1,8 @@
 import React from "react";
 import { genres, languages } from "../utils/constants";
 import { LanguageIcon } from "@heroicons/react/20/solid";
+import { PlayCircleIcon } from "@heroicons/react/24/outline";
+import PrimaryBtn from "./PrimaryBtn";
 interface MainProps {
   movieInfo: any;
 }
@@ -44,6 +46,12 @@ const Main = (props: MainProps) => {
           {formatDate(movieInfo.release_date)}
         </span>{" "}
       </div>
+      <PrimaryBtn
+        title="Watch Trailer"
+        onClickHandler={() => {}}
+        iconComponent={<PlayCircleIcon className="w-6" />}
+        classList="mt-8"
+      />
     </div>
   );
 };
