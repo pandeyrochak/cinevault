@@ -8,7 +8,8 @@ import "swiper/css/free-mode";
 import "swiper/css/pagination";
 
 // import required modules
-import { FreeMode } from "swiper";
+import { FreeMode, Mousewheel } from "swiper";
+
 interface TrendingContentProps {
   trendingList: Array<any>;
   mediaType: string;
@@ -16,16 +17,19 @@ interface TrendingContentProps {
 const TrendingContent = (props: TrendingContentProps) => {
   const { trendingList, mediaType } = props;
   return (
-    <div className="px-4 lg:px-10 pt-20">
-      <h2 className="text-3xl font-bold mt-8 mb-6">Trending {mediaType}</h2>
+    <div className="px-4 lg:px-10 pt-10">
+      <h2 className="text-2xl md:3xl font-bold  mb-6">Trending {mediaType}</h2>
       <Swiper
         slidesPerView={"auto"}
         spaceBetween={20}
         freeMode={true}
+        mousewheel={{
+          forceToAxis: true,
+        }}
         pagination={{
           paginationDisabledClass: "swiper-pagination-disabled",
         }}
-        modules={[FreeMode]}
+        modules={[FreeMode, Mousewheel]}
         className="trendingSlider"
       >
         {trendingList.map((item: any) => (

@@ -11,7 +11,7 @@ const MovieCard = (props: MovieCardProps) => {
     <img
       src={`${imageBaseUrl}/w342${imageUrl}`}
       alt=""
-      className="w-60 rounded-lg shadow-lg shadow-gray-800 cursor-pointer"
+      className="w-36 sm:w-40 md:w-48 lg:60 rounded-lg shadow-lg shadow-gray-800 cursor-pointer"
       onClick={() => {
         console.log("clicked");
       }}

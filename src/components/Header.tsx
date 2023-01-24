@@ -8,7 +8,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 
 // import required modules
-import { Pagination } from "swiper";
+import { Pagination, Autoplay } from "swiper";
 
 interface HeaderProps {
   upcomingMovies: Array<any>;
@@ -24,9 +24,10 @@ const Header = (props: HeaderProps) => {
           clickable: true,
         }}
         autoplay={{
-          delay: 1000,
+          delay: 2500,
+          disableOnInteraction: true,
         }}
-        modules={[Pagination]}
+        modules={[Pagination, Autoplay]}
         className="upcomingSlider w-full h-full relative"
       >
         {upcomingMovies.map(
