@@ -1,6 +1,7 @@
 import React from "react";
 import { imageBaseUrl } from "../utils/constants";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { ChevronDoubleDownIcon } from "@heroicons/react/20/solid";
 import { Main } from "./exports";
 // Import Swiper styles
 import "swiper/css";
@@ -22,15 +23,18 @@ const Header = (props: HeaderProps) => {
           dynamicBullets: true,
           clickable: true,
         }}
+        autoplay={{
+          delay: 1000,
+        }}
         modules={[Pagination]}
-        className="upcomingSlider w-full h-full"
+        className="upcomingSlider w-full h-full relative"
       >
         {upcomingMovies.map(
           (movie: any) =>
             movie.backdrop_path && (
               <SwiperSlide
                 key={movie.id}
-                className="bg-cover bg-center bg-no-repeat relative"
+                className="bg-cover bg-center bg-no-repeat"
                 style={{
                   backgroundImage: `linear-gradient(180deg, rgba(0, 0, 0, 0.37) 0%, rgba(1, 0, 2, 0.43) 79.17%, #010002 100%),url(${imageBaseUrl}/w1280${movie.backdrop_path})`,
                 }}
@@ -39,6 +43,9 @@ const Header = (props: HeaderProps) => {
               </SwiperSlide>
             )
         )}
+        <div className="absolute left-1/2 bottom-0 -translate-x-1/2 -translate-y-8 z-10 hidden md:block">
+          <ChevronDoubleDownIcon className="w-10 h-10 animate-bounce" />
+        </div>
       </Swiper>
     </div>
   );

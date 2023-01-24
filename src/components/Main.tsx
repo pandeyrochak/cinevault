@@ -1,6 +1,6 @@
 import React from "react";
 import { genres, languages } from "../utils/constants";
-import { LanguageIcon, ChevronDoubleDownIcon } from "@heroicons/react/20/solid";
+import { LanguageIcon } from "@heroicons/react/20/solid";
 interface MainProps {
   movieInfo: any;
 }
@@ -31,21 +31,18 @@ const Main = (props: MainProps) => {
       <div className="text-sm lg:text-xl font-light">
         {genreList.join(", ")}
       </div>
-      <h1 className="text-7xl font-bold uppercase leading-snug">
+      <h1 className="text-4xl sm:text-5xl md:7xl font-bold uppercase">
         {movieInfo.title}
       </h1>
       <div className="flex gap-2">
         <LanguageIcon className="h-6 w-6 text-primary-yellow" />
         <div className="text-sm lg:text-xl font-light">{originalLanguage}</div>
       </div>
-      <div className="text-3xl mt-8">
+      <div className="text-2xl md:text-3xl mt-8">
         In cinemas on{" "}
         <span className="5xl font-semibold text-gray-100">
           {formatDate(movieInfo.release_date)}
         </span>{" "}
-      </div>
-      <div className="absolute left-1/2 bottom-1/4 -translate-x-1/2 -translate-y-8">
-        <ChevronDoubleDownIcon className="w-10 h-10 animate-bounce" />
       </div>
     </div>
   );

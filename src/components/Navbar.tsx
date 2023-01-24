@@ -23,12 +23,12 @@ const Navbar = () => {
         CineVault
       </h5>
       <ul className="hidden md:flex gap-8 items-center">
-        <li className="">
+        <li className="cursor-pointer">
           <MagnifyingGlassIcon className="h-6 w-6" />
         </li>
-        <li className="text-xl">Home</li>
-        <li className="text-xl">Movies</li>
-        <li className="text-xl">Shows</li>
+        <li className="cursor-pointer text-xl">Home</li>
+        <li className="cursor-pointer text-xl">Movies</li>
+        <li className="cursor-pointer text-xl">Shows</li>
       </ul>
     </nav>
   );
