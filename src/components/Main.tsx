@@ -1,12 +1,14 @@
-import React from "react";
-import { genres, languages } from "../utils/constants";
 import { LanguageIcon } from "@heroicons/react/20/solid";
 import {
-  PlayCircleIcon,
   InformationCircleIcon,
+  PlayCircleIcon,
 } from "@heroicons/react/24/outline";
-import PrimaryBtn from "./PrimaryBtn";
-import { SecondaryBtn } from "./exports";
+import {
+  formatDate,
+  getGenreList,
+  getLanguageName,
+} from "../utils/utilityMethods";
+import { PrimaryBtn, SecondaryBtn } from "./exports";
 interface MainProps {
   movieInfo: any;
 }
@@ -14,29 +16,17 @@ const Main = (props: MainProps) => {
   // destructuring props
   const { movieInfo } = props;
 
-  // map genre ids to genre names
-  const genreList = movieInfo.genre_ids.map((id: number) => {
-    return genres.find((genre) => genre.id === id)?.name;
-  });
+  // get genre names
+  const genreList = getGenreList(movieInfo);
 
   // find original language name
-  const originalLanguage = languages.find((lang) => {
-    return lang.iso_639_1 === movieInfo.original_language;
-  })?.english_name;
+  const originalLanguage = getLanguageName(movieInfo.original_language);
 
   // function to format date in dd Month format
-  const formatDate = (date: string) => {
-    const dateObj = new Date(date);
-    const month = dateObj.toLocaleString("default", { month: "long" });
-    const day = dateObj.getDate();
-    return `${day} ${month}`;
-  };
 
   return (
     <div className="flex flex-col h-full translate-y-1/4 px-4 lg:px-24">
-      <div className="text-sm lg:text-xl font-light">
-        {genreList.join(", ")}
-      </div>
+      <div className="text-sm lg:text-xl font-light">{genreList}</div>
       <h1 className="text-4xl sm:text-5xl md:7xl font-bold uppercase">
         {movieInfo.title}
       </h1>
