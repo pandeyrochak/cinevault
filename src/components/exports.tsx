@@ -7,3 +7,6 @@ export { default as PrimaryBtn } from "./PrimaryBtn";
 export { default as SecondaryBtn } from "./SecondaryBtn";
 export { default as Home } from "./pages/Home";
 export { default as Details } from "./pages/Details";
+export { default as CastView } from "./CastView";
+export { default as SimilarMovies } from "./SimilarMovies";
+export { default as DetailsView } from "./DetailsView";

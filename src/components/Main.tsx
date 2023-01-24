@@ -3,6 +3,7 @@ import {
   InformationCircleIcon,
   PlayCircleIcon,
 } from "@heroicons/react/24/outline";
+import { Link } from "react-router-dom";
 import {
   formatDate,
   getGenreList,
@@ -47,12 +48,14 @@ const Main = (props: MainProps) => {
           iconComponent={<PlayCircleIcon className="w-6" />}
           classList="mt-8 transition-transform transform hover:scale-110"
         />
-        <SecondaryBtn
-          title="Learn More"
-          onClickHandler={() => {}}
-          iconComponent={<InformationCircleIcon className="w-6" />}
-          classList="mt-8 transition-transform transform hover:scale-110"
-        />
+        <Link to={`details/movie/${movieInfo.id}`}>
+          <SecondaryBtn
+            title="Learn More"
+            onClickHandler={() => {}}
+            iconComponent={<InformationCircleIcon className="w-6" />}
+            classList="mt-8 transition-transform transform hover:scale-110"
+          />
+        </Link>
       </div>
     </div>
   );
