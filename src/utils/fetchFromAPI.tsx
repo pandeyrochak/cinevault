@@ -21,3 +21,14 @@ export const getUpcoming = async (region?: string) => {
   console.log(data.results);
   return data.results;
 };
+// fetch movies and shows from the API
+export const getMediaInfo = async (mediatype: string, mediaId: string) => {
+  if (mediatype === "shows") mediatype = "tv";
+  if (mediatype === "movies") mediatype = "movie";
+  const response = await fetch(
+    `${baseUrl}/${mediatype}/${mediaId}?api_key=${process.env.REACT_APP_API_KEY}`
+  );
+  const data = await response.json();
+  console.log(data);
+  return data;
+};
