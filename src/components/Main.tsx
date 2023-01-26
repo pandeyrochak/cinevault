@@ -53,12 +53,14 @@ const Main = (props: MainProps) => {
         </span>{" "}
       </div>
       <div className="flex items-center gap-4">
-        <PrimaryBtn
-          title="Watch Trailer"
-          onClickHandler={() => {}}
-          iconComponent={<PlayCircleIcon className="w-6" />}
-          classList="mt-8 transition-transform transform hover:scale-110"
-        />
+        {trailer && (
+          <PrimaryBtn
+            title="Watch Trailer"
+            onClickHandler={() => {}}
+            iconComponent={<PlayCircleIcon className="w-6" />}
+            classList="mt-8 transition-transform transform hover:scale-110"
+          />
+        )}
         <Link to={`details/movie/${movieInfo.id}`}>
           <SecondaryBtn
             title="Learn More"
