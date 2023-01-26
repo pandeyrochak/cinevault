@@ -6,16 +6,19 @@ interface MediaCardProps {
   imageUrl: string;
   movieId: number;
   mediaType: string;
+  classList?: string;
 }
 const MediaCard = (props: MediaCardProps) => {
-  const { imageUrl, movieId, mediaType } = props;
+  const { imageUrl, movieId, mediaType, classList } = props;
 
   return (
     <Link to={`/details/${mediaType}/${movieId}`}>
       <img
         src={`${imageBaseUrl}/w342${imageUrl}`}
         alt=""
-        className="w-36 sm:w-40 md:w-48 lg:60 rounded-lg shadow-lg shadow-gray-800 cursor-pointer"
+        className={`w-full rounded-lg  cursor-pointer ${
+          classList ? classList : "w-36 sm:w-40 md:w-48 lg:w-60 shadow-lg shadow-grey-800"
+        }`}
       />
     </Link>
   );

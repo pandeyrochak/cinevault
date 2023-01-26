@@ -11,3 +11,6 @@ export { default as CastView } from "./CastView";
 export { default as SimilarMovies } from "./SimilarMovies";
 export { default as DetailsView } from "./DetailsView";
 export { default as Modal } from "./Modal";
+export { default as Discover } from "./pages/Discover";
+export { default as DiscoverFeed } from "./DiscoverFeed";
+export { default as Pagination } from "./Pagination";

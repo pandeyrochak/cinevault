@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { MagnifyingGlassIcon } from "@heroicons/react/20/solid";
 
 const Navbar = () => {
@@ -19,16 +20,24 @@ const Navbar = () => {
         isScrolling ? "backdrop-blur-md" : ""
       }`}
     >
-      <h5 className="font-semibold text-2xl md:text-3xl uppercase">
-        CineVault
-      </h5>
+      <Link to="/">
+        <h5 className="font-semibold text-2xl md:text-3xl uppercase cursor-pointer">
+          CineVault
+        </h5>
+      </Link>
       <ul className="hidden md:flex gap-8 items-center">
         <li className="cursor-pointer">
           <MagnifyingGlassIcon className="h-6 w-6" />
         </li>
-        <li className="cursor-pointer text-xl">Home</li>
-        <li className="cursor-pointer text-xl">Movies</li>
-        <li className="cursor-pointer text-xl">Shows</li>
+        <Link to="/">
+          <li className="cursor-pointer text-xl">Home</li>
+        </Link>
+        <Link to="/discover/movie">
+          <li className="cursor-pointer text-xl">Movies</li>
+        </Link>
+        <Link to="/discover/tv">
+          <li className="cursor-pointer text-xl">Shows</li>
+        </Link>
       </ul>
     </nav>
   );

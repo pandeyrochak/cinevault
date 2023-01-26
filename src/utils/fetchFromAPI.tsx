@@ -41,3 +41,12 @@ export const getTrailer = async (mediatype: string, mediaId: string) => {
 
   return data.results.find((item: any) => item.type === "Trailer").key;
 };
+
+//discover movies
+export const getDiscover = async (mediaType: string, page: number) => {
+  const response = await fetch(
+    `${baseUrl}/discover/${mediaType}?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=true&page=${page}`
+  );
+  const data = await response.json();
+  return data.results;
+};
