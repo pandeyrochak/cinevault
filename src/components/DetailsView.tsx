@@ -9,12 +9,23 @@ import { getLanguageName, getRunningTime } from "../utils/utilityMethods";
 import { PrimaryBtn } from "./exports";
 interface DetailsViewProps {
   mediaInfo: any;
+  mediaType: string | undefined;
 }
 
 const DetailsView = (props: DetailsViewProps) => {
-  const { mediaInfo } = props;
-  const { poster_path, title, overview, genres, original_language, runtime } =
-    mediaInfo;
+  const { mediaInfo, mediaType } = props;
+  const {
+    poster_path,
+    title,
+    name,
+    overview,
+    genres,
+    original_language,
+    runtime,
+    number_of_episodes,
+    number_of_seasons,
+  } = mediaInfo;
+
   const genreList = genres.map((genre: any) => genre.name).join(", ");
   const language = getLanguageName(original_language);
   const watchDuration = runtime && getRunningTime(runtime);
@@ -30,16 +41,29 @@ const DetailsView = (props: DetailsViewProps) => {
         <div className="flex flex-col w-fit mt-5 max-w-screen-md">
           <div className="text-sm lg:text-xl font-light">{genreList}</div>
           <h2 className="my-3 text-2xl sm:text-4xl md:5xl lg:text-6xl font-bold uppercase">
-            {title}
+            {mediaType === "movies" && title}
+            {mediaType === "shows" && name}
           </h2>
           <div className="flex gap-2">
             <LanguageIcon className="h-6 w-6 text-primary-yellow" />
             <div className="text-sm lg:text-xl font-light">{language}</div>
-            {watchDuration && (
+            {mediaType === "movies" ? (
               <>
                 <ClockIcon className="h-6 w-6 text-primary-yellow ml-3" />
                 <div className="text-sm lg:text-xl font-light">
                   {watchDuration}
+                </div>
+              </>
+            ) : (
+              <>
+                <ClockIcon className="h-6 w-6 text-primary-yellow ml-3" />
+                <div className="text-sm lg:text-xl font-light">
+                  {number_of_seasons}{" "}
+                  {number_of_seasons === 1 ? "Season," : "Seasons,"}
+                </div>
+                <div className="text-sm lg:text-xl font-light">
+                  {number_of_episodes}{" "}
+                  {number_of_episodes === 1 ? "Episode" : "Episodes"}
                 </div>
               </>
             )}

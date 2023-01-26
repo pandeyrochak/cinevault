@@ -31,7 +31,7 @@ const Details = () => {
             backgroundImage: `linear-gradient(180deg, rgba(16, 22, 36, 0.22) 0%, rgba(9, 12, 20, 0.9) 30.82%, #0E1320 51.12%, #111827 100%),url(${imageBaseUrl}/w1280${mediaInfo.backdrop_path})`,
           }}
         >
-          <DetailsView mediaInfo={mediaInfo} />
+          <DetailsView mediaInfo={mediaInfo} mediaType={media!} />
         </div>
       )}
     </>
