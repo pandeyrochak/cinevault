@@ -39,7 +39,7 @@ const DetailsView = (props: DetailsViewProps) => {
       // const key = data.results.find((item: any) => item.type === "Trailer").key;
       setTrailer(data);
     });
-  }, []);
+  });
   return (
     <>
       <div className="flex flex-col sm:items-center sm:flex-row lg:translate-y-16 mx-auto px-8 justify-start w-screen pt-28 sm:gap-6 md:gap-10 lg:gap-14">

@@ -24,7 +24,7 @@ const Main = (props: MainProps) => {
       // const key = data.results.find((item: any) => item.type === "Trailer").key;
       setTrailer(data);
     });
-  }, []);
+  });
   // destructuring props
   const { movieInfo } = props;
 
