@@ -23,6 +23,5 @@ export const formatDate = (date: string) => {
 export const getRunningTime = (runningTime: number) => {
   const hours = Math.floor(runningTime / 60);
   const minutes = runningTime - 60 * hours;
-  console.log(typeof hours);
   return `${hours} hrs ${minutes} mins`;
 };

@@ -1,6 +1,8 @@
 export const logo = "/assets/logo.png";
 export const backdrop = "/assets/pushpa_backdrop.png";
 export const imageBaseUrl = "https://image.tmdb.org/t/p/";
+// embed youtube base url
+export const youtubeBaseUrl = "https://www.youtube.com/embed/";
 // ids for genres used in api
 export const genres = [
   {
@@ -1420,4 +1422,156 @@ export const movieStub = {
   video: false,
   vote_average: 8.264,
   vote_count: 26159,
+};
+export const tvStub = {
+  adult: false,
+  backdrop_path: "/23WUgvjfnQFNwSPSSG9CdGFnauN.jpg",
+  created_by: [
+    {
+      id: 56156,
+      credit_id: "6160c3191d35630060c5c11d",
+      name: "Bonnie Turner",
+      gender: 1,
+      profile_path: null,
+    },
+    {
+      id: 56157,
+      credit_id: "6160c3221d35630060c5c144",
+      name: "Terry Turner",
+      gender: 2,
+      profile_path: null,
+    },
+    {
+      id: 1212419,
+      credit_id: "6160c3101d3563002bc093ae",
+      name: "Gregg Mettler",
+      gender: 0,
+      profile_path: null,
+    },
+    {
+      id: 3263710,
+      credit_id: "6160c34067e0f70063082236",
+      name: "Lindsay Turner",
+      gender: 0,
+      profile_path: null,
+    },
+  ],
+  episode_run_time: [],
+  first_air_date: "2023-01-19",
+  genres: [
+    {
+      id: 35,
+      name: "Comedy",
+    },
+  ],
+  homepage: "https://www.netflix.com/title/81288370",
+  id: 135959,
+  in_production: true,
+  languages: ["en"],
+  last_air_date: "2023-01-19",
+  last_episode_to_air: {
+    air_date: "2023-01-19",
+    episode_number: 10,
+    id: 4115689,
+    name: "Kids in America",
+    overview:
+      "As Sherri deals with her landlord, Leia’s last day in town gets complicated after Jay expresses doubts about a long-distance relationship.",
+    production_code: "",
+    runtime: 24,
+    season_number: 1,
+    show_id: 135959,
+    still_path: "/zMuXHxK0ziC3MPJaJkQCz8jtj69.jpg",
+    vote_average: 0.0,
+    vote_count: 0,
+  },
+  name: "That '90s Show",
+  next_episode_to_air: null,
+  networks: [
+    {
+      id: 213,
+      name: "Netflix",
+      logo_path: "/wwemzKWzjKYJFfCeiB57q3r4Bcm.png",
+      origin_country: "",
+    },
+  ],
+  number_of_episodes: 10,
+  number_of_seasons: 1,
+  origin_country: ["US"],
+  original_language: "en",
+  original_name: "That '90s Show",
+  overview:
+    "Hello, Wisconsin! It's 1995 and Leia Forman, daughter of Eric and Donna, is visiting her grandparents for the summer where she bonds with a new generation of Point Place kids under the watchful eye of Kitty and the stern glare of Red. Sex, drugs and rock 'n roll never dies, it just changes clothes.",
+  popularity: 76.84,
+  poster_path: "/nZcufEuqZqNYMx6mNjlh2rmjDqx.jpg",
+  production_companies: [
+    {
+      id: 3215,
+      logo_path: "/yskyQQUMRlMHwkTs4DNdtIUcAjh.png",
+      name: "Carsey-Werner Company",
+      origin_country: "",
+    },
+  ],
+  production_countries: [
+    {
+      iso_3166_1: "US",
+      name: "United States of America",
+    },
+  ],
+  seasons: [
+    {
+      air_date: "2023-01-19",
+      episode_count: 10,
+      id: 214873,
+      name: "Season 1",
+      overview: "",
+      poster_path: "/nZcufEuqZqNYMx6mNjlh2rmjDqx.jpg",
+      season_number: 1,
+    },
+  ],
+  spoken_languages: [
+    {
+      english_name: "English",
+      iso_639_1: "en",
+      name: "English",
+    },
+  ],
+  status: "Returning Series",
+  tagline: "Times change. Teenagers don’t.",
+  type: "Scripted",
+  vote_average: 7.045,
+  vote_count: 44,
+};
+export const tvVideoStub = {
+  id: 1396,
+  results: [
+    {
+      iso_639_1: "en",
+      iso_3166_1: "US",
+      name: "Series Trailer",
+      key: "XZ8daibM3AE",
+      published_at: "2013-03-25T16:28:54.000Z",
+      site: "YouTube",
+      size: 480,
+      type: "Trailer",
+      official: true,
+      id: "5759db2fc3a3683e7c003df7",
+    },
+  ],
+};
+export const movieVideoStub = {
+  id: 859664,
+  results: [
+    {
+      iso_639_1: "en",
+      iso_3166_1: "US",
+      name: "Footprints | Official Trailer | Indian Short Film",
+      key: "TrwguVfuL9o",
+      site: "YouTube",
+      size: 1080,
+      type: "Trailer",
+      official: false,
+      published_at: "2023-01-06T12:30:09.000Z",
+      id: "63c597a7c9054f008999434c",
+    },
+  ],
 };

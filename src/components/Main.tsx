@@ -3,17 +3,28 @@ import {
   InformationCircleIcon,
   PlayCircleIcon,
 } from "@heroicons/react/24/outline";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { youtubeBaseUrl } from "../utils/constants";
+import { getTrailer } from "../utils/fetchFromAPI";
 import {
   formatDate,
   getGenreList,
   getLanguageName,
 } from "../utils/utilityMethods";
-import { PrimaryBtn, SecondaryBtn } from "./exports";
+import { Modal, PrimaryBtn, SecondaryBtn } from "./exports";
 interface MainProps {
   movieInfo: any;
 }
 const Main = (props: MainProps) => {
+  const [trailer, setTrailer] = useState("");
+  const [trailerModalOpen, setTrailerModalOpen] = useState(false);
+  useEffect(() => {
+    getTrailer("movie", movieInfo.id).then((data) => {
+      // const key = data.results.find((item: any) => item.type === "Trailer").key;
+      setTrailer(data);
+    });
+  }, []);
   // destructuring props
   const { movieInfo } = props;
 
@@ -57,6 +68,14 @@ const Main = (props: MainProps) => {
           />
         </Link>
       </div>
+      <Modal setIsOpen={setTrailerModalOpen} isOpen={trailerModalOpen}>
+        <iframe
+          height="500"
+          src={`${youtubeBaseUrl}${trailer}`}
+          title={movieInfo.title}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        ></iframe>
+      </Modal>
     </div>
   );
 };

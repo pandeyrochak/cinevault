@@ -10,3 +10,4 @@ export { default as Details } from "./pages/Details";
 export { default as CastView } from "./CastView";
 export { default as SimilarMovies } from "./SimilarMovies";
 export { default as DetailsView } from "./DetailsView";
+export { default as Modal } from "./Modal";

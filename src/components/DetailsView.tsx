@@ -3,17 +3,21 @@ import {
   LanguageIcon,
   PlayCircleIcon,
 } from "@heroicons/react/24/outline";
-import React from "react";
-import { imageBaseUrl } from "../utils/constants";
+import React, { useEffect, useState } from "react";
+import { imageBaseUrl, youtubeBaseUrl } from "../utils/constants";
+import { getTrailer } from "../utils/fetchFromAPI";
 import { getLanguageName, getRunningTime } from "../utils/utilityMethods";
-import { PrimaryBtn } from "./exports";
+import { PrimaryBtn, Modal } from "./exports";
 interface DetailsViewProps {
   mediaInfo: any;
   mediaType: string | undefined;
+  mediaId: string | undefined;
 }
 
 const DetailsView = (props: DetailsViewProps) => {
-  const { mediaInfo, mediaType } = props;
+  const [trailerModalOpen, setTrailerModalOpen] = useState(false);
+  const [trailer, setTrailer] = useState("");
+  const { mediaInfo, mediaType, mediaId } = props;
   const {
     poster_path,
     title,
@@ -28,7 +32,14 @@ const DetailsView = (props: DetailsViewProps) => {
 
   const genreList = genres.map((genre: any) => genre.name).join(", ");
   const language = getLanguageName(original_language);
-  const watchDuration = runtime && getRunningTime(runtime);
+  const watchDuration = runtime && runtime > 0 ? getRunningTime(runtime) : null;
+
+  useEffect(() => {
+    getTrailer(mediaType!, mediaId!).then((data) => {
+      // const key = data.results.find((item: any) => item.type === "Trailer").key;
+      setTrailer(data);
+    });
+  }, []);
   return (
     <>
       <div className="flex flex-col sm:items-center sm:flex-row lg:translate-y-16 mx-auto px-8 justify-start w-screen pt-28 sm:gap-6 md:gap-10 lg:gap-14">
@@ -41,18 +52,22 @@ const DetailsView = (props: DetailsViewProps) => {
         <div className="flex flex-col w-fit mt-5 max-w-screen-md">
           <div className="text-sm lg:text-xl font-light">{genreList}</div>
           <h2 className="my-3 text-2xl sm:text-4xl md:5xl lg:text-6xl font-bold uppercase">
-            {mediaType === "movies" && title}
-            {mediaType === "shows" && name}
+            {mediaType === "movie" && title}
+            {mediaType === "tv" && name}
           </h2>
           <div className="flex gap-2">
             <LanguageIcon className="h-6 w-6 text-primary-yellow" />
             <div className="text-sm lg:text-xl font-light">{language}</div>
-            {mediaType === "movies" ? (
+            {mediaType === "movie" ? (
               <>
-                <ClockIcon className="h-6 w-6 text-primary-yellow ml-3" />
-                <div className="text-sm lg:text-xl font-light">
-                  {watchDuration}
-                </div>
+                {watchDuration && (
+                  <>
+                    <ClockIcon className="h-6 w-6 text-primary-yellow ml-3" />
+                    <div className="text-sm lg:text-xl font-light">
+                      {watchDuration}
+                    </div>
+                  </>
+                )}
               </>
             ) : (
               <>
@@ -68,18 +83,32 @@ const DetailsView = (props: DetailsViewProps) => {
               </>
             )}
           </div>
-          <PrimaryBtn
-            title="Watch Trailer"
-            onClickHandler={() => {}}
-            iconComponent={<PlayCircleIcon className="w-6" />}
-            classList="my-5 transition-transform transform hover:scale-110"
-          />
-          <p className="hidden lg:block text-base font-light">{overview}</p>
+          {trailer && (
+            <PrimaryBtn
+              title="Watch Trailer"
+              onClickHandler={() => {
+                setTrailerModalOpen(true);
+              }}
+              iconComponent={<PlayCircleIcon className="w-6" />}
+              classList="mt-5 transition-transform transform hover:scale-110"
+            />
+          )}
+          <p className="mt-5 hidden lg:block text-base font-light">
+            {overview}
+          </p>
         </div>
       </div>
       <p className="block lg:hidden text-sm md:text-base font-light px-8 pr-10">
         {overview}
       </p>
+      <Modal setIsOpen={setTrailerModalOpen} isOpen={trailerModalOpen}>
+        <iframe
+          height="500"
+          src={`${youtubeBaseUrl}${trailer}`}
+          title={mediaType === "movies" ? title : name}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        ></iframe>
+      </Modal>
     </>
   );
 };
