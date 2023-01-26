@@ -18,7 +18,9 @@ const TrendingContent = (props: TrendingContentProps) => {
   const { trendingList, mediaType } = props;
   return (
     <div className="px-4 lg:px-10 pt-10">
-      <h2 className="text-2xl md:3xl font-bold  mb-6">Trending {mediaType}</h2>
+      <h2 className="text-2xl md:3xl font-bold  mb-6">
+        Trending {mediaType === "movie" ? "movies" : "shows"}
+      </h2>
       <Swiper
         slidesPerView={"auto"}
         spaceBetween={20}
