@@ -2,32 +2,52 @@ import React from "react";
 import { ChevronLeftIcon } from "@heroicons/react/24/outline";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 interface PaginationProps {
-  totalPages: number;
   currentPage: number;
+  setcurrentPage: Function;
+  pagesArray: Array<number>;
 }
-const PageButton = ({ pageNumber }: { pageNumber: any }) => {
+const PageButton = ({
+  pageNumber,
+  currentPage,
+  onClickHandler,
+}: {
+  pageNumber: any;
+  currentPage: number;
+  onClickHandler: Function;
+}) => {
   return (
-    <button className=" text-white px-4 py-2 rounded-full border border-transparent hover:border-primary-yellow">
+    <button
+      className={`rounded-full border border-transparent px-4 py-2 text-white hover:border-primary-yellow ${
+        pageNumber === currentPage
+          ? "bg-primary-yellow text-secondary-brown"
+          : ""
+      }`}
+      onClick={() => onClickHandler(pageNumber)}
+    >
       {pageNumber}
     </button>
   );
 };
 
 const Pagination = (props: PaginationProps) => {
-  const { totalPages, currentPage } = props;
-  const pagesArray = Array.from(Array(totalPages).keys(), (n) => n + 1);
+  const { pagesArray, currentPage, setcurrentPage } = props;
 
   return (
-    <div className="flex items-center w-full justify-center">
-      <button className=" text-white px-2 py-2 rounded-full border border-transparent hover:border-primary-yellow">
+    <div className="flex w-full items-center justify-center">
+      <button className=" rounded-full border border-transparent px-2 py-2 text-white hover:border-primary-yellow">
         <ChevronLeftIcon className="h-5 w-5" />
       </button>
-      <div className="flex items-center justify-start overflow-hidden w-64">
+      <div className="flex w-fit items-center justify-start overflow-hidden">
         {pagesArray.map((page) => (
-          <PageButton key={page} pageNumber={page} />
+          <PageButton
+            key={page}
+            pageNumber={page}
+            currentPage={currentPage}
+            onClickHandler={setcurrentPage}
+          />
         ))}
       </div>
-      <button className=" text-white px-2 py-2 rounded-full border border-transparent hover:border-primary-yellow">
+      <button className=" rounded-full border border-transparent px-2 py-2 text-white hover:border-primary-yellow">
         <ChevronRightIcon className="h-5 w-5" />
       </button>
     </div>
