@@ -15,16 +15,16 @@ const Discover = () => {
 
   const setCurrentPageHandler = (pageNumber: number) => {
     setcurrentPage(pageNumber);
-    window.scrollTo({
-      top: 0,
-      left: 0,
-      behavior: "smooth",
-    });
   };
 
   const [discoverMedia, setDiscoverMedia] = React.useState([]);
   React.useEffect(() => {
     settotalPages(20);
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior: "smooth",
+    });
     getDiscover(mediaType!, currentPage).then((data) => {
       if (!data) console.log("Error fetching data");
       else setDiscoverMedia(data);

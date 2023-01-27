@@ -14,3 +14,4 @@ export { default as Modal } from "./Modal";
 export { default as Discover } from "./pages/Discover";
 export { default as DiscoverFeed } from "./DiscoverFeed";
 export { default as Pagination } from "./Pagination";
+export { default as Footer } from "./Footer";
