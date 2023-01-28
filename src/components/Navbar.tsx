@@ -59,9 +59,9 @@ const Navbar = () => {
         </h5>
       </Link>
       <ul className="hidden items-center gap-8 md:flex">
-        <li className="cursor-pointer">
+        {/* <li className="cursor-pointer">
           <MagnifyingGlassIcon className="h-6 w-6" />
-        </li>
+        </li> */}
         <Link to="/">
           <li className="cursor-pointer text-xl">Home</li>
         </Link>
@@ -73,7 +73,7 @@ const Navbar = () => {
         </Link>
       </ul>
       {/* mobile navigation */}
-      <Bars3CenterLeftIcon className="h-6 w-6 md:hidden" onClick={openNav} />
+      <Bars3CenterLeftIcon className="h-6 w-6 md:hidden transform rotate-180" onClick={openNav} />
 
       <div
         className={`fixed top-0 z-10 flex h-screen w-screen items-center justify-center bg-gray-900 transition-all duration-200 ${
@@ -85,9 +85,9 @@ const Navbar = () => {
           onClick={() => setShowMobileNav(false)}
         />
         <ul className="flex flex-col items-center gap-8">
-          <li className="cursor-pointer">
+          {/* <li className="cursor-pointer">
             <MagnifyingGlassIcon className="h-8 w-8" />
-          </li>
+          </li> */}
           <Link to="/" onClick={() => setShowMobileNav(false)}>
             <li className="cursor-pointer text-2xl">Home</li>
           </Link>
