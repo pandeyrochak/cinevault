@@ -42,28 +42,28 @@ const DetailsView = (props: DetailsViewProps) => {
   });
   return (
     <>
-      <div className="flex flex-col sm:items-center sm:flex-row lg:translate-y-16 mx-auto px-8 justify-start w-screen pt-28 sm:gap-6 md:gap-10 lg:gap-14">
+      <div className="mx-auto flex w-screen flex-col justify-start px-8 pt-28 sm:flex-row sm:items-center sm:gap-6 md:gap-10 lg:translate-y-16 lg:gap-14">
         <img
           src={`${imageBaseUrl}/w342${poster_path}`}
           alt=""
-          className="rounded-lg w-full sm:w-60 md:w-72 lg:w-80"
+          className="w-full rounded-lg sm:w-60 md:w-72 lg:w-80"
           style={{ boxShadow: `0px 0px 26px 4px #060A11` }}
         />
-        <div className="flex flex-col w-fit mt-5 max-w-screen-md">
-          <div className="text-sm lg:text-xl font-light">{genreList}</div>
-          <h2 className="my-3 text-2xl sm:text-4xl md:5xl lg:text-6xl font-bold uppercase">
+        <div className="mt-5 flex w-fit max-w-screen-md flex-col">
+          <div className="text-sm font-light lg:text-xl">{genreList}</div>
+          <h2 className="md:5xl my-3 text-2xl font-bold uppercase sm:text-4xl lg:text-6xl">
             {mediaType === "movie" && title}
             {mediaType === "tv" && name}
           </h2>
           <div className="flex gap-2">
             <LanguageIcon className="h-6 w-6 text-primary-yellow" />
-            <div className="text-sm lg:text-xl font-light">{language}</div>
+            <div className="text-sm font-light lg:text-xl">{language}</div>
             {mediaType === "movie" ? (
               <>
                 {watchDuration && (
                   <>
-                    <ClockIcon className="h-6 w-6 text-primary-yellow ml-3" />
-                    <div className="text-sm lg:text-xl font-light">
+                    <ClockIcon className="ml-3 h-6 w-6 text-primary-yellow" />
+                    <div className="text-sm font-light lg:text-xl">
                       {watchDuration}
                     </div>
                   </>
@@ -71,18 +71,21 @@ const DetailsView = (props: DetailsViewProps) => {
               </>
             ) : (
               <>
-                <ClockIcon className="h-6 w-6 text-primary-yellow ml-3" />
-                <div className="text-sm lg:text-xl font-light">
+                <ClockIcon className="ml-3 h-6 w-6 text-primary-yellow" />
+                <div className="text-sm font-light lg:text-xl">
                   {number_of_seasons}{" "}
                   {number_of_seasons === 1 ? "Season," : "Seasons,"}
                 </div>
-                <div className="text-sm lg:text-xl font-light">
+                <div className="text-sm font-light lg:text-xl">
                   {number_of_episodes}{" "}
                   {number_of_episodes === 1 ? "Episode" : "Episodes"}
                 </div>
               </>
             )}
           </div>
+          <p className="mt-5 hidden text-base font-light lg:block">
+            {overview}
+          </p>
           {trailer && (
             <PrimaryBtn
               title="Watch Trailer"
@@ -90,17 +93,24 @@ const DetailsView = (props: DetailsViewProps) => {
                 setTrailerModalOpen(true);
               }}
               iconComponent={<PlayCircleIcon className="w-6" />}
-              classList="mt-5 transition-transform transform hover:scale-110"
+              classList="mt-5 transition-transform transform hover:scale-110 hidden sm:flex"
             />
           )}
-          <p className="mt-5 hidden lg:block text-base font-light">
-            {overview}
-          </p>
         </div>
       </div>
-      <p className="block lg:hidden text-sm md:text-base font-light px-8 pr-10">
+      <p className="mt-5 block px-8 pr-10 text-sm font-light md:text-base lg:hidden">
         {overview}
       </p>
+      {trailer && (
+        <PrimaryBtn
+          title="Watch Trailer"
+          onClickHandler={() => {
+            setTrailerModalOpen(true);
+          }}
+          iconComponent={<PlayCircleIcon className="w-6" />}
+          classList="mt-5 transition-transform transform hover:scale-110 ml-8 flex sm:hidden"
+        />
+      )}
       <Modal setIsOpen={setTrailerModalOpen} isOpen={trailerModalOpen}>
         <iframe
           height="500"
