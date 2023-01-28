@@ -41,10 +41,10 @@ const Navbar = () => {
         <Link to="/">
           <li className="cursor-pointer text-xl">Home</li>
         </Link>
-        <Link to="/discover/movie">
+        <Link to="/discover/movie?feedType=discover">
           <li className="cursor-pointer text-xl">Movies</li>
         </Link>
-        <Link to="/discover/tv">
+        <Link to="/discover/tv?feedType=discover">
           <li className="cursor-pointer text-xl">Shows</li>
         </Link>
       </ul>
@@ -67,10 +67,16 @@ const Navbar = () => {
           <Link to="/" onClick={() => setShowMobileNav(false)}>
             <li className="cursor-pointer text-2xl">Home</li>
           </Link>
-          <Link to="/discover/movie" onClick={() => setShowMobileNav(false)}>
+          <Link
+            to="/discover/movie?feedType=discover"
+            onClick={() => setShowMobileNav(false)}
+          >
             <li className="cursor-pointer text-2xl">Movies</li>
           </Link>
-          <Link to="/discover/tv" onClick={() => setShowMobileNav(false)}>
+          <Link
+            to="/discover/tv?feedType=discover"
+            onClick={() => setShowMobileNav(false)}
+          >
             <li className="cursor-pointer text-2xl">Shows</li>
           </Link>
         </ul>

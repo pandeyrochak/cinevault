@@ -1,8 +1,12 @@
 const baseUrl = "https://api.themoviedb.org/3";
 
-export const getTrending = async (mediaType: string, timeWindow: string) => {
+export const getTrending = async (
+  mediaType: string,
+  timeWindow: string,
+  page: number
+) => {
   const response = await fetch(
-    `${baseUrl}/trending/${mediaType}/${timeWindow}?api_key=${process.env.REACT_APP_API_KEY}`
+    `${baseUrl}/trending/${mediaType}/${timeWindow}?api_key=${process.env.REACT_APP_API_KEY}&page=${page}`
   );
   const data = await response.json();
   return data.results;

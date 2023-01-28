@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { DiscoverFeed, Pagination } from "../exports";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
-import { getDiscover } from "../../utils/fetchFromAPI";
+import { getDiscover, getTrending } from "../../utils/fetchFromAPI";
 
 const useQuery = () => {
   const { search } = useLocation();
@@ -12,6 +12,7 @@ const Discover = () => {
   const navigate = useNavigate();
   let query = useQuery();
   const currentPage = query.get("page") ? parseInt(query.get("page")!) : 1;
+  const feedType = query.get("feedType");
 
   const { mediaType } = useParams();
 
@@ -24,7 +25,7 @@ const Discover = () => {
   const setCurrentPageHandler = (pageNumber: number) => {
     navigate({
       pathname: `/discover/${mediaType}`,
-      search: `?page=${pageNumber}`,
+      search: `?feedType=${feedType}&page=${pageNumber}`,
     });
   };
   // useEffect for the pagination
@@ -40,10 +41,18 @@ const Discover = () => {
       left: 0,
       behavior: "smooth",
     });
-    getDiscover(mediaType!, currentPage).then((data) => {
-      if (!data) console.log("Error fetching data");
-      else setDiscoverMedia(data);
-    });
+    if (feedType === "trending") {
+      getTrending(mediaType!, "day", currentPage).then((data) => {
+        if (!data) console.log("Error fetching data");
+        else setDiscoverMedia(data);
+      });
+    }
+    if (feedType === "discover") {
+      getDiscover(mediaType!, currentPage).then((data) => {
+        if (!data) console.log("Error fetching data");
+        else setDiscoverMedia(data);
+      });
+    }
   }, [mediaType, currentPage]);
 
   return (

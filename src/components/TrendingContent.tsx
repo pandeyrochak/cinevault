@@ -9,6 +9,10 @@ import "swiper/css/pagination";
 
 // import required modules
 import { FreeMode, Mousewheel } from "swiper";
+import { Link } from "react-router-dom";
+
+// import icons
+import { ChevronDoubleRightIcon } from "@heroicons/react/20/solid";
 
 interface TrendingContentProps {
   trendingList: Array<any>;
@@ -17,9 +21,16 @@ interface TrendingContentProps {
 const TrendingContent = (props: TrendingContentProps) => {
   const { trendingList, mediaType } = props;
   return (
-    <div className="px-4 lg:px-10 pt-10">
-      <h2 className="text-2xl md:3xl font-bold  mb-6">
+    <div className="px-4 pt-10 lg:px-10">
+      <h2 className="md:3xl mb-6 flex  items-baseline gap-3 text-2xl font-bold">
         Trending {mediaType === "movie" ? "movies" : "shows"}
+        <Link
+          to={`/discover/${mediaType}?feedType=trending`}
+          className="flex items-center gap-2 text-base font-light"
+        >
+          Explore all
+          <ChevronDoubleRightIcon className="h-5 w-5" />
+        </Link>
       </h2>
       <Swiper
         slidesPerView={"auto"}

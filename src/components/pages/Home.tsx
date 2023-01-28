@@ -20,7 +20,7 @@ const Home = () => {
     if (localStorage.getItem("trendingMovies")) {
       settrendingMovies(JSON.parse(localStorage.getItem("trendingMovies")!));
     } else {
-      getTrending("movie", "day").then((data) => {
+      getTrending("movie", "day", 1).then((data) => {
         settrendingMovies(data);
         localStorage.setItem("trendingMovies", JSON.stringify(data));
       });
@@ -29,7 +29,7 @@ const Home = () => {
     if (localStorage.getItem("trendingShows")) {
       settrendingShows(JSON.parse(localStorage.getItem("trendingShows")!));
     } else {
-      getTrending("tv", "day").then((data) => {
+      getTrending("tv", "day", 1).then((data) => {
         settrendingShows(data);
         localStorage.setItem("trendingShows", JSON.stringify(data));
       });
