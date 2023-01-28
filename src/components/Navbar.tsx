@@ -1,12 +1,15 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import {
   MagnifyingGlassIcon,
   Bars3CenterLeftIcon,
   XMarkIcon,
 } from "@heroicons/react/20/solid";
+import { ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
 
 const Navbar = () => {
+  const location = useLocation().pathname;
+  const [isHome, setIsHome] = React.useState(true);
   const [isScrolling, setIsScrolling] = React.useState(false);
   const [showMobileNav, setShowMobileNav] = React.useState(false);
   const openNav = () => {
@@ -22,6 +25,14 @@ const Navbar = () => {
       }
     });
   }, []);
+  // if location changes then check if it is home
+  useEffect(() => {
+    if (location === "/") {
+      setIsHome(true);
+    } else {
+      setIsHome(false);
+    }
+  }, [location]);
 
   return (
     <nav
@@ -29,6 +40,19 @@ const Navbar = () => {
         isScrolling ? "backdrop-blur-md" : ""
       }`}
     >
+      {/* back button for mobile */}
+      {/* {!isHome && (
+        <ArrowLeftCircleIcon
+          className="block h-10 w-10 cursor-pointer text-white md:hidden"
+          onClick={() => window.history.back()}
+        />
+      )} */}
+      <ArrowLeftCircleIcon
+        className={`${
+          !isHome ? "visible" : "invisible"
+        } block h-10 w-10 cursor-pointer text-white md:hidden`}
+        onClick={() => window.history.back()}
+      />
       <Link to="/">
         <h5 className="cursor-pointer text-2xl font-semibold uppercase md:text-3xl">
           CineVault
