@@ -6,7 +6,15 @@ const Footer = () => {
       <h5 className="hidden uppercase md:block">Cinevault</h5>
       <p className="md:md-0 mb-2 flex flex-col">
         <div>
-          Created with <span className="text-red-500">♥️</span> by Rochak Pandey
+          Created with <span className="text-red-500">♥️</span> by &nbsp;
+          <a
+            href="https://peerlist.io/pandeyrochak"
+            target="_blank"
+            rel="noreferrer"
+            className="border-b border-primary-yellow"
+          >
+            Rochak Pandey
+          </a>
         </div>
       </p>
 
