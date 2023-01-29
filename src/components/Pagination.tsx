@@ -38,7 +38,7 @@ const Pagination = (props: PaginationProps) => {
   const { pagesArray, currentPage, setcurrentPage } = props;
 
   return (
-    <div className="flex w-full items-center justify-center px-8">
+    <div className="flex w-full max-w-md mx-auto items-center justify-center">
       <button
         className=" m rounded-full border border-transparent px-2 py-2 text-white hover:border-primary-yellow"
         onClick={() => setcurrentPage(currentPage - 1)}
@@ -48,12 +48,12 @@ const Pagination = (props: PaginationProps) => {
 
       <Swiper
         direction={"horizontal"}
-        slidesPerView={10}
+        slidesPerView={8}
         freeMode={true}
         scrollbar={false}
         mousewheel={true}
         modules={[FreeMode, Scrollbar, Mousewheel]}
-        className="flex w-full items-center justify-start"
+        className="flex  items-center justify-start"
       >
         {pagesArray.map((page) => (
           <SwiperSlide>
