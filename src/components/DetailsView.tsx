@@ -113,9 +113,10 @@ const DetailsView = (props: DetailsViewProps) => {
       )}
       <Modal setIsOpen={setTrailerModalOpen} isOpen={trailerModalOpen}>
         <iframe
-          height="500"
           src={`${youtubeBaseUrl}${trailer}`}
           title={mediaType === "movies" ? title : name}
+          className="h-full w-full"
+          allowFullScreen={true}
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
         ></iframe>
       </Modal>

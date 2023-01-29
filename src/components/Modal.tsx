@@ -40,7 +40,7 @@ const Modal = (props: ModalProps) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="flex w-full max-w-4xl transform flex-col gap-3 overflow-hidden rounded-lg p-6 shadow-xl transition-all">
+                <Dialog.Panel className="flex aspect-video w-full max-w-4xl transform flex-col gap-3 overflow-hidden rounded-lg shadow-xl transition-all">
                   <XCircleIcon
                     className="h-8 w-8 cursor-pointer self-end text-red-500"
                     onClick={() => {
