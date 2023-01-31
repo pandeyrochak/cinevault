@@ -145,7 +145,7 @@ const Navbar = () => {
         animate={showSearchBar ? "openMobile" : "closedMobile"}
         variants={variantsMobile}
         transition={{ duration: 0.2 }}
-        className={`absolute top-4 right-14 z-10 mx-auto flex h-9 w-3/4 max-w-[280px] rounded-full border border-gray-400 bg-gray-900 ${
+        className={`absolute top-4 right-14 z-10 mx-auto block flex h-9 w-3/4 max-w-[280px] rounded-full border border-gray-400 bg-gray-900 md:hidden ${
           showSearchBar ? "block" : "hidden"
         }`}
       >
