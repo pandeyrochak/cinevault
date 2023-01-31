@@ -6,11 +6,15 @@ import {
   Bars3CenterLeftIcon,
   XMarkIcon,
 } from "@heroicons/react/20/solid";
-import { ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
+import { ArrowLeftCircleIcon, HomeIcon } from "@heroicons/react/24/outline";
 
 const variants = {
   open: { opacity: 1, x: 0 },
   closed: { opacity: 0, x: 10 },
+};
+const variantsMobile = {
+  openMobile: { opacity: 1 },
+  closedMobile: { opacity: 0 },
 };
 
 const Navbar = () => {
@@ -56,6 +60,7 @@ const Navbar = () => {
     });
   }, []);
   // if location changes then check if it is home
+  console.log(location);
   useEffect(() => {
     if (location === "/") {
       setIsHome(true);
@@ -66,7 +71,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed z-10 flex w-full justify-between px-4 py-4 lg:px-10 ${
+      className={`fixed z-10 flex w-full items-center justify-between px-4 py-4 lg:px-10 ${
         isScrolling ? "backdrop-blur-md" : ""
       }`}
     >
@@ -77,12 +82,19 @@ const Navbar = () => {
           onClick={() => window.history.back()}
         />
       )} */}
-      <ArrowLeftCircleIcon
-        className={`${
-          !isHome ? "visible" : "invisible"
-        } block h-10 w-10 cursor-pointer text-white md:hidden`}
-        onClick={() => window.history.back()}
-      />
+      {location === "/search" ? (
+        <HomeIcon
+          className="block h-8 w-8 cursor-pointer text-white md:hidden"
+          onClick={() => navigate("/")}
+        />
+      ) : (
+        <ArrowLeftCircleIcon
+          className={`${
+            !isHome ? "visible" : "invisible"
+          } block h-10 w-10 cursor-pointer text-white md:hidden`}
+          onClick={() => window.history.back()}
+        />
+      )}
       <Link to="/">
         <h5 className="cursor-pointer text-2xl font-semibold uppercase md:text-3xl">
           CineVault
@@ -129,6 +141,33 @@ const Navbar = () => {
         </Link>
       </ul>
       {/* mobile navigation */}
+      <motion.div
+        animate={showSearchBar ? "openMobile" : "closedMobile"}
+        variants={variantsMobile}
+        transition={{ duration: 0.2 }}
+        className={`absolute top-4 right-14 z-10 mx-auto flex h-9 w-3/4 max-w-[280px] rounded-full border border-gray-400 bg-gray-900 ${
+          showSearchBar ? "block" : "hidden"
+        }`}
+      >
+        <input
+          ref={searchInput}
+          type={"text"}
+          name="search"
+          id="search"
+          placeholder="Search"
+          className={`rounded-full bg-transparent py-1 pl-4 pr-5 leading-none text-white outline-none`}
+          onBlur={handleBlur}
+          onChange={handleSearch}
+        />
+        <MagnifyingGlassIcon
+          className={` absolute right-2 top-1/2 h-6  w-6 -translate-y-1/2 cursor-pointer `}
+          onClick={handleFocus}
+        />
+      </motion.div>
+      <MagnifyingGlassIcon
+        className={` absolute right-16 block h-6 w-6 cursor-pointer md:hidden`}
+        onClick={handleFocus}
+      />
       <Bars3CenterLeftIcon
         className="h-6 w-6 rotate-180 transform md:hidden"
         onClick={openNav}
@@ -144,9 +183,6 @@ const Navbar = () => {
           onClick={() => setShowMobileNav(false)}
         />
         <ul className="flex flex-col items-center gap-8">
-          {/* <li className="cursor-pointer">
-            <MagnifyingGlassIcon className="h-8 w-8" />
-          </li> */}
           <Link to="/" onClick={() => setShowMobileNav(false)}>
             <li className="cursor-pointer text-2xl">Home</li>
           </Link>
