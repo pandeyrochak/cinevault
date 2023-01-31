@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { imageBaseUrl, movieStub as mediaInfo2 } from "../../utils/constants";
-import { getMediaInfo } from "../../utils/fetchFromAPI";
-import { DetailsView } from "../exports";
+import { getMediaInfo, getSimilar } from "../../utils/fetchFromAPI";
+import { DetailsView, TrendingContent } from "../exports";
 const Details = () => {
   const { mediaType, id } = useParams();
   const [mediaInfo, setmediaInfo] = useState(mediaInfo2);
+  const [similarMedia, setsimilarMedia] = useState([]);
   const [loading, setloading] = useState(true);
   useEffect(() => {
+    console.log('useeffectcalled')
     if (localStorage.getItem(`mediaInfo-${id}`)) {
       setmediaInfo(JSON.parse(localStorage.getItem(`mediaInfo-${id}`)!));
       setloading(false);
@@ -18,7 +20,10 @@ const Details = () => {
         setloading(false);
       });
     }
-  }, []);
+    getSimilar(mediaType!, 1, id!).then((data) => {
+      setsimilarMedia(data);
+    });
+  }, [id, mediaType]);
 
   return (
     <>
@@ -35,6 +40,12 @@ const Details = () => {
             mediaInfo={mediaInfo}
             mediaType={mediaType!}
             mediaId={id!}
+          />
+          <TrendingContent
+            key={id}
+            trendingList={similarMedia}
+            mediaType={mediaType!}
+            headingTitle="Similar"
           />
         </div>
       )}

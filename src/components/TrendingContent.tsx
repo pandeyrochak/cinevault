@@ -17,13 +17,14 @@ import { ChevronDoubleRightIcon } from "@heroicons/react/20/solid";
 interface TrendingContentProps {
   trendingList: Array<any>;
   mediaType: string;
+  headingTitle: string;
 }
 const TrendingContent = (props: TrendingContentProps) => {
-  const { trendingList, mediaType } = props;
+  const { trendingList, mediaType, headingTitle } = props;
   return (
     <div className="px-4 pt-10 lg:px-10">
       <h2 className="md:3xl mb-6 flex  items-baseline gap-3 text-2xl font-bold">
-        Trending {mediaType === "movie" ? "movies" : "shows"}
+        {headingTitle} {mediaType === "movie" ? "movies" : "shows"}
         <Link
           to={`/discover/${mediaType}?feedType=trending`}
           className="flex items-center gap-2 text-base font-light"
