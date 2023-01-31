@@ -22,7 +22,7 @@ const Navbar = () => {
   const [isHome, setIsHome] = React.useState(true);
   const [isScrolling, setIsScrolling] = React.useState(false);
   const [showMobileNav, setShowMobileNav] = React.useState(false);
-  const [showSearchBar, setShowSearchBar] = React.useState(true);
+  const [showSearchBar, setShowSearchBar] = React.useState(false);
   const searchInput = useRef<HTMLInputElement | null>(null);
   const navigate = useNavigate();
 
@@ -165,7 +165,7 @@ const Navbar = () => {
         />
       </motion.div>
       <MagnifyingGlassIcon
-        className={` absolute right-16 block h-6 w-6 cursor-pointer block md:hidden`}
+        className={` absolute right-16 block block h-6 w-6 cursor-pointer md:hidden`}
         onClick={handleFocus}
       />
       <Bars3CenterLeftIcon
