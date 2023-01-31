@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
-import { Navbar, Home, Details, Discover, Footer } from "./components/exports";
+import { Navbar, Home, Details, Discover, Footer, Search } from "./components/exports";
 
 function App() {
   useEffect(() => {
@@ -23,6 +23,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/details/:mediaType/:id" element={<Details />} />
           <Route path="/discover/:mediaType" element={<Discover />} />
+          <Route path="/search" element={<Search />} />
         </Routes>
         <Footer />
       </BrowserRouter>

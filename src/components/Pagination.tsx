@@ -38,7 +38,7 @@ const Pagination = (props: PaginationProps) => {
   const { pagesArray, currentPage, setcurrentPage } = props;
 
   return (
-    <div className="flex w-full max-w-md mx-auto items-center justify-center">
+    <div className="mx-auto flex w-full max-w-md items-center justify-center">
       <button
         className=" m rounded-full border border-transparent px-2 py-2 text-white hover:border-primary-yellow"
         onClick={() => setcurrentPage(currentPage - 1)}
@@ -56,9 +56,8 @@ const Pagination = (props: PaginationProps) => {
         className="flex  items-center justify-start"
       >
         {pagesArray.map((page) => (
-          <SwiperSlide>
+          <SwiperSlide key={page}>
             <PageButton
-              key={page}
               pageNumber={page}
               currentPage={currentPage}
               onClickHandler={setcurrentPage}

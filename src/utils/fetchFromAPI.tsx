@@ -54,3 +54,11 @@ export const getDiscover = async (mediaType: string, page: number) => {
   const data = await response.json();
   return data.results;
 };
+// search movies and shows
+export const getSearchResults = async (query: string, page: number) => {
+  const response = await fetch(
+    `${baseUrl}/search/multi?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&query=${query}&page=${page}&include_adult=false`
+  );
+  const data = await response.json();
+  return data.results;
+};

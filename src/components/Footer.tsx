@@ -4,7 +4,7 @@ const Footer = () => {
   return (
     <div className="color-white text-md mt-8 flex flex-col items-start justify-between border-t border-gray-700 px-10 py-7 font-light md:flex-row md:items-center md:text-lg">
       <h5 className="hidden uppercase md:block">Cinevault</h5>
-      <p className="md:md-0 mb-2 flex flex-col">
+      <div className="md:md-0 mb-2 flex flex-col">
         <div>
           Created with <span className="text-red-500">♥️</span> by &nbsp;
           <a
@@ -16,7 +16,7 @@ const Footer = () => {
             Rochak Pandey
           </a>
         </div>
-      </p>
+      </div>
 
       <a
         href="https://www.themoviedb.org/"

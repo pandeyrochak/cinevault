@@ -1,5 +1,6 @@
-import React, { useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import React, { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import {
   MagnifyingGlassIcon,
   Bars3CenterLeftIcon,
@@ -7,14 +8,43 @@ import {
 } from "@heroicons/react/20/solid";
 import { ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
 
+const variants = {
+  open: { opacity: 1, x: 0 },
+  closed: { opacity: 0, x: 10 },
+};
+
 const Navbar = () => {
   const location = useLocation().pathname;
   const [isHome, setIsHome] = React.useState(true);
   const [isScrolling, setIsScrolling] = React.useState(false);
   const [showMobileNav, setShowMobileNav] = React.useState(false);
+  const [showSearchBar, setShowSearchBar] = React.useState(true);
+  const searchInput = useRef<HTMLInputElement | null>(null);
+  const navigate = useNavigate();
+
+  const handleFocus = () => {
+    setShowSearchBar(true);
+  };
+  const handleBlur = () => {
+    setShowSearchBar(false);
+  };
+  const handleSearch = () => {
+    const query = searchInput.current?.value ? searchInput.current.value : "";
+    if (query.length > 2) {
+      navigate({
+        pathname: "/search",
+        search: `?query=${query}`,
+      });
+    }
+  };
   const openNav = () => {
     setShowMobileNav(!showMobileNav);
   };
+  useEffect(() => {
+    if (showSearchBar) {
+      searchInput.current?.focus();
+    }
+  }, [showSearchBar]);
 
   useEffect(() => {
     window.addEventListener("scroll", () => {
@@ -59,9 +89,35 @@ const Navbar = () => {
         </h5>
       </Link>
       <ul className="hidden items-center gap-8 md:flex">
-        {/* <li className="cursor-pointer">
-          <MagnifyingGlassIcon className="h-6 w-6" />
-        </li> */}
+        <motion.li
+          animate={showSearchBar ? "open" : "closed"}
+          variants={variants}
+          transition={{ duration: 0.2 }}
+          className={`relative h-full rounded-full bg-white ${
+            showSearchBar ? "block" : "hidden"
+          }`}
+        >
+          <input
+            ref={searchInput}
+            type={"text"}
+            name="search"
+            id="search"
+            placeholder="Search"
+            className={`rounded-full bg-transparent py-1 pl-4 pr-5 leading-none text-gray-900 outline-none`}
+            onBlur={handleBlur}
+            onChange={handleSearch}
+          />
+          <MagnifyingGlassIcon
+            className={` absolute right-3 top-1/2 h-6 w-6 -translate-y-1/2 text-gray-900`}
+          />
+        </motion.li>
+        <MagnifyingGlassIcon
+          className={` h-6 w-6 cursor-pointer ${
+            showSearchBar ? "hidden" : "block"
+          } `}
+          onClick={handleFocus}
+        />
+
         <Link to="/">
           <li className="cursor-pointer text-xl">Home</li>
         </Link>
@@ -73,7 +129,10 @@ const Navbar = () => {
         </Link>
       </ul>
       {/* mobile navigation */}
-      <Bars3CenterLeftIcon className="h-6 w-6 md:hidden transform rotate-180" onClick={openNav} />
+      <Bars3CenterLeftIcon
+        className="h-6 w-6 rotate-180 transform md:hidden"
+        onClick={openNav}
+      />
 
       <div
         className={`fixed top-0 z-10 flex h-screen w-screen items-center justify-center bg-gray-900 transition-all duration-200 ${
