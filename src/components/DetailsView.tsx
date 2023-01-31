@@ -42,7 +42,7 @@ const DetailsView = (props: DetailsViewProps) => {
   });
   return (
     <>
-      <div className="mx-auto flex w-screen flex-col justify-start px-8 pt-28 sm:flex-row sm:items-center sm:gap-6 md:gap-10 lg:translate-y-16 lg:gap-14">
+      <div className="pb:10 mx-auto flex w-screen flex-col justify-start px-8 pt-28 sm:flex-row sm:items-center sm:gap-6 md:gap-10  lg:gap-14">
         <img
           src={`${imageBaseUrl}/w342${poster_path}`}
           alt=""

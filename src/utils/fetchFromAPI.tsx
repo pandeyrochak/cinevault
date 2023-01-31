@@ -62,3 +62,16 @@ export const getSearchResults = async (query: string, page: number) => {
   const data = await response.json();
   return data.results;
 };
+
+// get similar movies and shows
+export const getSimilar = async (
+  mediaType: string,
+  page: number,
+  mediaId: string
+) => {
+  const response = await fetch(
+    `${baseUrl}/${mediaType}/${mediaId}/similar?api_key=${process.env.REACT_APP_API_KEY}&language=en-US&adult=false&page=${page}`
+  );
+  const data = await response.json();
+  return data.results;
+};

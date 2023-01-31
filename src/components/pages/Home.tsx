@@ -38,8 +38,16 @@ const Home = () => {
   return (
     <>
       <Header upcomingMovies={upcomingMovies} />
-      <TrendingContent trendingList={trendingMovies} mediaType="movie" />
-      <TrendingContent trendingList={trendingShows} mediaType="tv" />
+      <TrendingContent
+        trendingList={trendingMovies}
+        mediaType="movie"
+        headingTitle="Trending"
+      />
+      <TrendingContent
+        trendingList={trendingShows}
+        mediaType="tv"
+        headingTitle="Trending"
+      />
     </>
   );
 };
