@@ -24,6 +24,7 @@ const Navbar = () => {
   const [showMobileNav, setShowMobileNav] = React.useState(false);
   const [showSearchBar, setShowSearchBar] = React.useState(false);
   const searchInput = useRef<HTMLInputElement | null>(null);
+  const searchInputMobile = useRef<HTMLInputElement | null>(null);
   const navigate = useNavigate();
 
   const handleFocus = () => {
@@ -33,8 +34,11 @@ const Navbar = () => {
     setShowSearchBar(false);
   };
   const handleSearch = () => {
-    const query = searchInput.current?.value ? searchInput.current.value : "";
-    if (query.length > 2) {
+    let query = "";
+    if (searchInput.current?.value) query = searchInput.current.value;
+    else if (searchInputMobile.current?.value)
+      query = searchInputMobile.current.value;
+    if (query!.length > 2) {
       navigate({
         pathname: "/search",
         search: `?query=${query}`,
@@ -47,6 +51,7 @@ const Navbar = () => {
   useEffect(() => {
     if (showSearchBar) {
       searchInput.current?.focus();
+      searchInputMobile.current?.focus();
     }
   }, [showSearchBar]);
 
@@ -150,7 +155,7 @@ const Navbar = () => {
         }`}
       >
         <input
-          ref={searchInput}
+          ref={searchInputMobile}
           type={"text"}
           name="search"
           id="search"
